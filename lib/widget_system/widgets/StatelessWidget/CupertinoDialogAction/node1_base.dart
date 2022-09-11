@@ -36,7 +36,7 @@ class CupertinoDialogActionDemo extends StatelessWidget {
   }
 
   void _toast(BuildContext context) {
-    Scaffold.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       backgroundColor: Theme.of(context).primaryColor,
       content: const Text('CupertinoDialogAction'),
     ));

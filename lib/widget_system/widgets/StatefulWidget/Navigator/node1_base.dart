@@ -37,7 +37,8 @@ class NavigatorDemo extends StatelessWidget {
         return MaterialPageRoute(
             builder: (_) => const HomeContent(), settings: settings);
       case "/red":
-        return MaterialPageRoute(builder: (_) => const RedPage(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => const RedPage(), settings: settings);
       case "/yellow":
         return MaterialPageRoute(
             builder: (_) => const YellowPage(), settings: settings);
@@ -70,7 +71,8 @@ class TolyNavigatorObservers extends NavigatorObserver {
   }
 
   @override
-  void didStartUserGesture(Route<dynamic> route, Route<dynamic>? previousRoute) {
+  void didStartUserGesture(
+      Route<dynamic> route, Route<dynamic>? previousRoute) {
     print(
         '--didStartUserGesture:--route:--${route.settings}--previousRoute:--${previousRoute?.settings}');
   }
@@ -104,23 +106,33 @@ class HomeContent extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            RaisedButton(
-              color: Colors.red,
+            ElevatedButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/red');
               },
+              child: null,
             ),
-            RaisedButton(
-              color: Colors.yellow,
+            ElevatedButton(
+              style: ButtonStyle(
+                foregroundColor:
+                    MaterialStateProperty.all<Color>(Colors.yellow),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/yellow');
               },
+              child: null,
             ),
-            RaisedButton(
-              color: Colors.green,
+            ElevatedButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.green),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/green');
               },
+              child: null,
             )
           ],
         ),

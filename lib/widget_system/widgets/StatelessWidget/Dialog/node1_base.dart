@@ -1,19 +1,7 @@
-
-
 /// create by 张风捷特烈 on 2020-03-24
 /// contact me by email 1981462002@qq.com
 /// 说明:
 ///
-//    {
-//      "widgetId": 126,
-//      "name": 'Dialog基本使用',
-//      "priority": 1,
-//      "subtitle":
-//          "【child】 : 动画图标数据   【Widget】\n"
-//          "【elevation】 : 影深  【double】\n"
-//          "【backgroundColor】 : 背景色  【Color】\n"
-//          "【shape】 : 形状   【ShapeBorder】",
-//    }
 import 'package:flutter/material.dart';
 
 class CustomDialog extends StatelessWidget {
@@ -23,36 +11,39 @@ class CustomDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _buildRaisedButton(context),
+        _buildElevatedButton(context),
         _buildDialog(),
       ],
     );
   }
 
   Widget _buildDialog() => const Dialog(
-      backgroundColor: Colors.white,
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: SizedBox(
-        width: 50,
-        child: DeleteDialog(),
-      ),
-    );
+        backgroundColor: Colors.white,
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: SizedBox(
+          width: 50,
+          child: DeleteDialog(),
+        ),
+      );
 
-  Widget _buildRaisedButton(BuildContext context) => RaisedButton(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          color: Colors.blue,
-          onPressed: () {
-            showDialog(context: context, builder: (ctx) => _buildDialog());
-          },
-          child: const Text(
-            'Just Show It !',
-            style: TextStyle(color: Colors.white),
-          ),
-
-  );
+  Widget _buildElevatedButton(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          )),
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        ),
+        onPressed: () {
+          showDialog(context: context, builder: (ctx) => _buildDialog());
+        },
+        child: const Text(
+          'Just Show It !',
+          style: TextStyle(color: Colors.white),
+        ),
+      );
 }
 
 class DeleteDialog extends StatelessWidget {
@@ -92,7 +83,8 @@ class DeleteDialog extends StatelessWidget {
 
   Widget _buildFooter(context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0, top: 10,left: 10,right: 10),
+      padding:
+          const EdgeInsets.only(bottom: 15.0, top: 10, left: 10, right: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -107,7 +99,7 @@ class DeleteDialog extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
           InkWell(
-            onTap: ()=>Navigator.of(context).pop(),
+            onTap: () => Navigator.of(context).pop(),
             child: Container(
               alignment: Alignment.center,
               height: 40,
@@ -129,7 +121,7 @@ class DeleteDialog extends StatelessWidget {
         alignment: Alignment.centerRight,
         margin: const EdgeInsets.only(right: 10, top: 5),
         child: InkWell(
-          onTap: ()=>Navigator.of(context).pop(),
+          onTap: () => Navigator.of(context).pop(),
           child: const Icon(
             Icons.close,
             color: Color(0xff82CAE3),

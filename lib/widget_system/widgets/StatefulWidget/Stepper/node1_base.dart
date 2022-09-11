@@ -68,11 +68,15 @@ class _StepperDemoState extends State<StepperDemo> {
           controlsBuilder: (_, ControlsDetails details) {
             return Row(
               children: <Widget>[
-                RaisedButton(
-                  color: Colors.blue,
-                  shape: const CircleBorder(
-                    side: BorderSide(
-                        width: 2.0, color: Color(0xFFDFDFDF)),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                    shape: MaterialStateProperty.all(
+                      const CircleBorder(
+                        side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                      ),
+                    ),
                   ),
                   onPressed: details.onStepContinue,
                   child: const Icon(
@@ -80,10 +84,15 @@ class _StepperDemoState extends State<StepperDemo> {
                     color: Colors.white,
                   ),
                 ),
-                RaisedButton(
-                  color: Colors.red,
-                  shape: const CircleBorder(
-                    side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.red),
+                    shape: MaterialStateProperty.all(
+                      const CircleBorder(
+                        side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                      ),
+                    ),
                   ),
                   onPressed: details.onStepCancel,
                   child: const Icon(
@@ -94,21 +103,24 @@ class _StepperDemoState extends State<StepperDemo> {
               ],
             );
           },
-          steps: stepsData.keys.map((e){
-            bool isActive = stepsData.keys.toList().indexOf(e) ==_position;
+          steps: stepsData.keys.map((e) {
+            bool isActive = stepsData.keys.toList().indexOf(e) == _position;
             return Step(
-            title: Text(e,style: TextStyle(color: isActive?Colors.blue:Colors.black),),
-            isActive: isActive,
-            state: _getState(stepsData.keys.toList().indexOf(e)),
-            content: SizedBox(height: 60, child: Text(stepsData[e]!)),
-          );
+              title: Text(
+                e,
+                style: TextStyle(color: isActive ? Colors.blue : Colors.black),
+              ),
+              isActive: isActive,
+              state: _getState(stepsData.keys.toList().indexOf(e)),
+              content: SizedBox(height: 60, child: Text(stepsData[e]!)),
+            );
           }).toList()),
     );
   }
 
-  StepState _getState(index){
-    if(_position==index) return StepState.editing;
-    if(_position>index) return StepState.complete;
+  StepState _getState(index) {
+    if (_position == index) return StepState.editing;
+    if (_position > index) return StepState.complete;
     return StepState.indexed;
   }
 }

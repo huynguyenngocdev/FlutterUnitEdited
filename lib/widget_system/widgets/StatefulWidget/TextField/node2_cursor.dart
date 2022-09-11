@@ -64,8 +64,10 @@ class _CursorTextFieldState extends State<CursorTextField> {
     );
   }
 
-  Widget _buildSubmitBtn() => FlatButton(
-      color: Colors.blue,
+  Widget _buildSubmitBtn() => TextButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+      ),
       child: const Text(
         "提交",
         style: TextStyle(color: Colors.white, fontSize: 16),

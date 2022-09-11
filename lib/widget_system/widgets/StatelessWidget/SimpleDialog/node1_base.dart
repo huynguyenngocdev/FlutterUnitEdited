@@ -33,26 +33,28 @@ class CustomSimpleDialog extends StatelessWidget {
     return Stack(
       children: <Widget>[
         _buildSimpleDialog(context),
-        Positioned(
-            top: 70,
-            right: 30,
-            child: _buildRaisedButton(context)),
-
+        Positioned(top: 70, right: 30, child: _buildElevatedButton(context)),
       ],
     );
   }
-  Widget _buildRaisedButton(BuildContext context) => RaisedButton(
-    shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-    color: Colors.blue,
-    onPressed: () {
-      showDialog(context: context, builder: (ctx) => _buildSimpleDialog(ctx));
-    },
-    child: const Text(
+
+  Widget _buildElevatedButton(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          )),
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        ),
+        onPressed: () {
+          showDialog(
+              context: context, builder: (ctx) => _buildSimpleDialog(ctx));
+        },
+        child: const Text(
           'Just Show It',
           style: TextStyle(color: Colors.white),
         ),
-  );
+      );
 
   SimpleDialog _buildSimpleDialog(BuildContext context) {
     return SimpleDialog(
@@ -99,7 +101,8 @@ class CustomSimpleDialog extends StatelessWidget {
   }
 
   Widget _buildTitle() {
-    return Row(//标题
+    return Row(
+      //标题
       children: <Widget>[
         Image.asset(
           "assets/images/icon_head.webp",

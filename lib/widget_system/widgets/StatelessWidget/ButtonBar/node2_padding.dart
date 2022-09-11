@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+
 import '../../../../components/project/dialogs/dialog_about.dart';
 
 /// create by 张风捷特烈 on 2020-03-25
@@ -20,17 +20,25 @@ class PaddingButtonBar extends StatelessWidget {
     return ButtonBar(
       alignment: MainAxisAlignment.center,
       buttonHeight: 40,
-      buttonPadding: const EdgeInsets.only(left: 15,right: 15),
+      buttonPadding: const EdgeInsets.only(left: 15, right: 15),
       children: <Widget>[
-        RaisedButton(
-            color: Colors.blue,
+        ElevatedButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
             child: const Text("Raised"),
             onPressed: () => DialogAbout.show(context)),
         OutlinedButton(
             child: const Text("Outlined"),
             onPressed: () => DialogAbout.show(context)),
-        FlatButton(
-          color: Colors.blue,
+        TextButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            )),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          ),
           onPressed: () => DialogAbout.show(context),
           child: const Text("Flat"),
         )

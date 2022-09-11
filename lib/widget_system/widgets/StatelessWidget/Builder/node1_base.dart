@@ -26,7 +26,7 @@ class BuilderDemo extends StatelessWidget {
         floatingActionButton: Builder(
           builder: (ctx) => FloatingActionButton(
             onPressed: () {
-              Scaffold.of(ctx)
+              ScaffoldMessenger.of(ctx)
                   .showSnackBar(const SnackBar(content: Text('hello builder')));
             },
             child: const Icon(Icons.add),

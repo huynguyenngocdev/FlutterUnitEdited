@@ -29,7 +29,7 @@ class _CustomAbsorbPointerState extends State<CustomAbsorbPointer> {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
         GestureDetector(
-          onTap: (){
+          onTap: () {
             print('AbsorbPointer');
           },
           child: AbsorbPointer(
@@ -43,8 +43,11 @@ class _CustomAbsorbPointerState extends State<CustomAbsorbPointer> {
     );
   }
 
-  Widget _buildButton() => RaisedButton(
-      color: Theme.of(context).primaryColor,
+  Widget _buildButton() => ElevatedButton(
+      style: ButtonStyle(
+        foregroundColor:
+            MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
+      ),
       child: const Text(
         'To About',
         style: TextStyle(color: Colors.white),

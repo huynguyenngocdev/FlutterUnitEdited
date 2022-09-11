@@ -17,15 +17,15 @@ class MaterialBannerThemeDemo extends StatelessWidget {
     return MaterialBannerTheme(
       data: MaterialBannerTheme.of(context).copyWith(
         backgroundColor: Colors.purple,
-        padding: const EdgeInsetsDirectional.only(start: 16.0, top: 2.0,end: 2),
-        leadingPadding:const EdgeInsetsDirectional.only(end: 16.0) ,
-        contentTextStyle:  const TextStyle(color: Colors.white),
+        padding:
+            const EdgeInsetsDirectional.only(start: 16.0, top: 2.0, end: 2),
+        leadingPadding: const EdgeInsetsDirectional.only(end: 16.0),
+        contentTextStyle: const TextStyle(color: Colors.white),
       ),
       child: _MaterialBannerDemo(),
     );
   }
 }
-
 
 class _MaterialBannerDemo extends StatelessWidget {
   final info =
@@ -35,35 +35,40 @@ class _MaterialBannerDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[MaterialBanner(
-        content: Text(info),
-        leading: const Icon(Icons.warning, color: Colors.yellow),
-        actions: <Widget>[
-          RaisedButton(
-            color: Colors.white,
-            onPressed: () {},
-            child: const Text(
-              'I KNOW',
-              style: TextStyle(
-                  color: Colors.purple,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14),
+      children: <Widget>[
+        MaterialBanner(
+          content: Text(info),
+          leading: const Icon(Icons.warning, color: Colors.yellow),
+          actions: <Widget>[
+            ElevatedButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+              onPressed: () {},
+              child: const Text(
+                'I KNOW',
+                style: TextStyle(
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
+              ),
             ),
-          ),
-
-          RaisedButton(
-            color: Colors.white,
-            onPressed: () {},
-            child: const Text(
-              'I IGNORE',
-              style: TextStyle(
-                  color: Colors.purple,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14),
+            ElevatedButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+              onPressed: () {},
+              child: const Text(
+                'I IGNORE',
+                style: TextStyle(
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
+              ),
             ),
-          ),
-        ],
-      )],
+          ],
+        )
+      ],
     );
   }
 }

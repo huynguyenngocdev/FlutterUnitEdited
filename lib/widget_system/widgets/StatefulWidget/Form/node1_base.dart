@@ -30,30 +30,28 @@ class _CustomFormState extends State<CustomForm> {
       onChanged: () {
         print('Form---onChanged');
       },
-      child:
-          Stack(
-            alignment: Alignment.centerRight,
-            children: <Widget>[
-              SizedBox(
-                width: 350,
-                child: UnconstrainedBox(
-                  child: SizedBox(
-                    width: 200,
-                    height: 70,
-                    child: TextFormField(
-                      style: const TextStyle(textBaseline: TextBaseline.alphabetic),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'username',
-                      ),
-                      validator: _validateUsername,
-                    ),
+      child: Stack(
+        alignment: Alignment.centerRight,
+        children: <Widget>[
+          SizedBox(
+            width: 350,
+            child: UnconstrainedBox(
+              child: SizedBox(
+                width: 200,
+                height: 70,
+                child: TextFormField(
+                  style: const TextStyle(textBaseline: TextBaseline.alphabetic),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'username',
                   ),
+                  validator: _validateUsername,
                 ),
               ),
-              Positioned(
-                  top: 0, right: 0, child: _buildSubmitButton(context)),
-            ],
+            ),
+          ),
+          Positioned(top: 0, right: 0, child: _buildSubmitButton(context)),
+        ],
       ),
     );
   }
@@ -65,11 +63,13 @@ class _CustomFormState extends State<CustomForm> {
     return null;
   }
 
-  RaisedButton _buildSubmitButton(BuildContext context) {
-    return RaisedButton(
-      color: Colors.blue,
-      shape: const CircleBorder(
-        side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+  ElevatedButton _buildSubmitButton(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        shape: MaterialStateProperty.all(const CircleBorder(
+          side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+        )),
       ),
       onPressed: _onSubmit,
       child: const Icon(
@@ -79,9 +79,9 @@ class _CustomFormState extends State<CustomForm> {
     );
   }
 
-  void _onSubmit(){
-    if(_formKey.currentState==null) return;
-     if (_formKey.currentState!.validate()) {
+  void _onSubmit() {
+    if (_formKey.currentState == null) return;
+    if (_formKey.currentState!.validate()) {
       FocusScope.of(context).requestFocus(FocusNode());
       Navigator.of(context).pop();
     }
@@ -96,11 +96,11 @@ class _CustomFormState extends State<CustomForm> {
             title: const Text('提示'),
             content: const Text('你确定要离开此页吗?'),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 onPressed: () => Navigator.of(context).pop(true),
                 child: const Text('确定'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
                 child: const Text('取消'),
               ),

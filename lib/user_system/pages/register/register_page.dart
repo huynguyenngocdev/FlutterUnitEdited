@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_unit/user_system/api/system_api.dart';
 import 'package:flutter_unit/app/utils/Toast.dart';
 import 'package:flutter_unit/app/utils/http_utils/result_bean.dart';
+import 'package:flutter_unit/components/permanent/icon_input.dart';
+import 'package:flutter_unit/user_system/api/system_api.dart';
 import 'package:flutter_unit/user_system/bloc/authentic/bloc.dart';
 import 'package:flutter_unit/user_system/bloc/authentic/state.dart';
 import 'package:flutter_unit/user_system/bloc/login/bloc.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_unit/user_system/bloc/login/event.dart';
 import 'package:flutter_unit/user_system/bloc/register/bloc.dart';
 import 'package:flutter_unit/user_system/bloc/register/event.dart';
 import 'package:flutter_unit/user_system/bloc/register/state.dart';
-import 'package:flutter_unit/components/permanent/icon_input.dart';
 
 import 'arc_clipper.dart';
 import 'send_code.dart';
@@ -30,7 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailCtrl = TextEditingController(text: '1981462002@qq.com');
   final _codeCtrl = TextEditingController(text: '');
 
-  final ValueNotifier<bool> _enableRegister= ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _enableRegister = ValueNotifier<bool>(false);
 
   bool get enable => _emailCtrl.text.isNotEmpty && _codeCtrl.text.isNotEmpty;
 
@@ -46,7 +46,6 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     Size winSize = MediaQuery.of(context).size;
@@ -54,11 +53,9 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Wrap(children: [
-        Stack(children:[
+        Stack(children: [
           UnitArcBackground(height: winSize.height * 0.32),
-          const Positioned(
-              top: 20,
-              child: BackButton(color: Colors.white)),
+          const Positioned(top: 20, child: BackButton(color: Colors.white)),
         ]),
         Container(
             width: winSize.width,
@@ -135,7 +132,8 @@ class _RegisterPageState extends State<RegisterPage> {
         await SystemApi.sendEmail(email: _emailCtrl.text);
     print(result);
     if (result.status) {
-      Toast.toast(context, '验证码发送成功，请注意邮箱查收!', duration: const Duration(seconds: 2));
+      Toast.toast(context, '验证码发送成功，请注意邮箱查收!',
+          duration: const Duration(seconds: 2));
     } else {
       Toast.toast(context, '验证码发送失败: ${result.msg}!',
           color: Colors.red, duration: const Duration(seconds: 2));
@@ -170,14 +168,25 @@ class _RegisterPageState extends State<RegisterPage> {
         listener: _listenerLogin,
         child: ValueListenableBuilder(
           valueListenable: _enableRegister,
-          builder: (ctx,bool value,child){
-            return RaisedButton(
-                elevation: 0,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                color: Colors.blue,
-                disabledColor: Colors.blue.withOpacity(0.6),
-                onPressed: (enable||!value) ? null : _doRegister,
+          builder: (ctx, bool value, child) {
+            return ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  )),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  elevation: MaterialStateProperty.all(0),
+                  overlayColor: MaterialStateProperty.resolveWith(
+                    (states) {
+                      return states.contains(MaterialState.disabled)
+                          ? Colors.blue.withOpacity(0.6)
+                          : null;
+                    },
+                  ),
+                ),
+                onPressed: (enable || !value) ? null : _doRegister,
                 child: Text(info,
                     style: const TextStyle(color: Colors.white, fontSize: 18)));
           },
@@ -192,7 +201,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     if (state is RegisterSuccess) {
       BlocProvider.of<LoginBloc>(context)
-          .add(DoLogin(username:_emailCtrl.text, password:_codeCtrl.text));
+          .add(DoLogin(username: _emailCtrl.text, password: _codeCtrl.text));
     }
   }
 

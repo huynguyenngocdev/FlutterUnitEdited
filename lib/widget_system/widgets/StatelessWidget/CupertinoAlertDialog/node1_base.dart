@@ -1,17 +1,7 @@
-
 /// create by 张风捷特烈 on 2020-03-24
 /// contact me by email 1981462002@qq.com
 /// 说明:
 ///
-//    {
-//      "widgetId": 129,
-//      "name": 'CupertinoAlertDialog基本使用',
-//      "priority": 1,
-//      "subtitle": "【title】 : 顶部组件   【Widget】\n"
-//          "【content】 : 内容组件  【Widget】\n"
-//          "【actions】 : 顶部文字样式  【List<Widget>】",
-//    }
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,16 +12,17 @@ class CustomCupertinoAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _buildRaisedButton(context),
+        _buildElevatedButton(context),
         _buildCupertinoAlertDialog(context),
       ],
     );
   }
 
-  Widget _buildRaisedButton(BuildContext context) => RaisedButton(
-        shape: const RoundedRectangleBorder(
-            borderRadius:  BorderRadius.all(Radius.circular(10))),
-        color: Colors.blue,
+  Widget _buildElevatedButton(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))))),
         onPressed: () {
           showDialog(
               context: context,
@@ -39,7 +30,7 @@ class CustomCupertinoAlertDialog extends StatelessWidget {
         },
         child: const Text(
           'Just Show It !',
-          style:  TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
       );
 
@@ -73,7 +64,7 @@ class CustomCupertinoAlertDialog extends StatelessWidget {
           const Expanded(
               child: Text(
             'Delete File',
-            style:  TextStyle(color: Colors.red, fontSize: 20),
+            style: TextStyle(color: Colors.red, fontSize: 20),
           )),
           InkWell(
             child: const Icon(CupertinoIcons.clear_thick),
@@ -86,11 +77,11 @@ class CustomCupertinoAlertDialog extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 18.0),
       child: Column(
-        children: const[
-           Text(
+        children: const [
+          Text(
             '    Hi toly! If you push the conform buttom ,'
             ' You will lose this file. Are you sure wand to do that?',
-            style:  TextStyle(color: Color(0xff999999), fontSize: 16),
+            style: TextStyle(color: Color(0xff999999), fontSize: 16),
             textAlign: TextAlign.justify,
           ),
         ],

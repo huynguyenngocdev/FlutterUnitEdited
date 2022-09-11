@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 /// create by 张风捷特烈 on 2020/9/21
@@ -41,7 +42,8 @@ class _SliverIgnorePointerDemoState extends State<SliverIgnorePointerDemo> {
     return SizedBox(
       height: 300,
       child: CustomScrollView(
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
         slivers: <Widget>[
           _buildSliverAppBar(),
           _buildSliverList(),
@@ -72,24 +74,33 @@ class _SliverIgnorePointerDemoState extends State<SliverIgnorePointerDemo> {
           child: Wrap(
             spacing: 10,
             children: [
-              RaisedButton(
-                color: Colors.blue,
+              ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                ),
                 onPressed: () {
                   setState(() {
                     hasScrollBody = !hasScrollBody;
                   });
                 },
-                child: Text('hasScrollBody:$hasScrollBody',style: const TextStyle(color: Colors.white),),
+                child: Text(
+                  'hasScrollBody:$hasScrollBody',
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
-              RaisedButton(
-                color: Colors.blue,
-
+              ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                ),
                 onPressed: () {
                   setState(() {
                     fillOverscroll = !fillOverscroll;
                   });
                 },
-                child: Text('fillOverscroll:$fillOverscroll',style: const TextStyle(color: Colors.white)),
+                child: Text('fillOverscroll:$fillOverscroll',
+                    style: const TextStyle(color: Colors.white)),
               ),
             ],
           ),
@@ -151,5 +162,4 @@ class _SliverIgnorePointerDemoState extends State<SliverIgnorePointerDemo> {
 
   String colorString(Color color) =>
       "#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}";
-
 }

@@ -1,18 +1,6 @@
 /// create by 张风捷特烈 on 2020-03-25
 /// contact me by email 1981462002@qq.com
 /// 说明:
-//    {
-//      "widgetId": 142,
-//      "name": 'BottomSheet基本使用',
-//      "priority": 1,
-//      "subtitle":
-//          "【builder】 : 组件构造器   【WidgetBuilder】\n"
-//          "【backgroundColor】 : 背景色   【Color】\n"
-//          "【elevation】 : 影深   【double】\n"
-//          "【shape】 : 形状   【ShapeBorder】\n"
-//          "【onClosing】 : 关闭回调  【Function()】",
-//    }
-
 import 'package:flutter/material.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -27,8 +15,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-        color: Colors.blue,
+    return TextButton(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        ),
         onPressed: () {
           opened = !opened;
           opened
@@ -52,7 +42,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
       backgroundColor: Colors.transparent,
       onClosing: () => print('onClosing'),
       builder: (_) => (Container(
-        height: 250,
+            height: 250,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/images/sabar_bar.webp'),

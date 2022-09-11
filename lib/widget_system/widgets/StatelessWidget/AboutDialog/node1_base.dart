@@ -23,15 +23,19 @@ class CustomAboutDialog extends StatelessWidget {
     return Stack(
       children: <Widget>[
         _buildAboutDialog(),
-        Positioned(top: 50, right: 20, child: _buildRaisedButton(context)),
+        Positioned(top: 50, right: 20, child: _buildElevatedButton(context)),
       ],
     );
   }
 
-  Widget _buildRaisedButton(BuildContext context) => RaisedButton(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        color: Colors.blue,
+  Widget _buildElevatedButton(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          )),
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        ),
         onPressed: () {
           showDialog(context: context, builder: (ctx) => _buildAboutDialog());
         },

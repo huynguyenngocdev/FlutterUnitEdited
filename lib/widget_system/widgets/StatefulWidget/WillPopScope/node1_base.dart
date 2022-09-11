@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 /// contact me by email 1981462002@qq.com
 /// 说明:
 
-
 //    {
 //      "widgetId": 170,
 //      "name": 'WillPopScope使用',
@@ -25,26 +24,26 @@ class CustomWillPopScope extends StatelessWidget {
 
   Future<bool> _willPop(context) async {
     bool? exit = await showDialog(
-          context: context,
-          builder: (ctx) => AlertDialog(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            title: const Text('提示'),
-            content: const Text('你确定要离开此页吗?'),
-            actions: [
-              FlatButton(
-                onPressed: () => Navigator.of(ctx).pop(true),
-                child: const Text('确定'),
-              ),
-              FlatButton(
-                onPressed: () => Navigator.of(ctx).pop(false),
-                child: const Text('取消'),
-              ),
-            ],
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        title: const Text('提示'),
+        content: const Text('你确定要离开此页吗?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('确定'),
           ),
-        );
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('取消'),
+          ),
+        ],
+      ),
+    );
     print('====_willPop==:$exit========');
 
-    return exit??false;
+    return exit ?? false;
   }
 }

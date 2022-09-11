@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:ui' as ui;
+
 import 'node1_base.dart';
 
 /// create by 张风捷特烈 on 2020/7/22
@@ -48,9 +50,9 @@ class RepaintBoundarySave extends StatelessWidget {
         Uint8List? bits = await _widget2Image(_globalKey);
         Directory dir = await getApplicationSupportDirectory();
         File file = File(dir.path + "/save_img.png");
-        if(bits==null) return;
+        if (bits == null) return;
         var f = await file.writeAsBytes(bits);
-        Scaffold.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: Theme.of(context).primaryColor,
           content: Text('保存成功后! 路径为:${f.path}'),
         ));
@@ -58,7 +60,7 @@ class RepaintBoundarySave extends StatelessWidget {
 
   Future<Uint8List?> _widget2Image(GlobalKey key) async {
     RenderObject? boundary = key.currentContext?.findRenderObject();
-    if(boundary==null || boundary is! RenderRepaintBoundary) return null;
+    if (boundary == null || boundary is! RenderRepaintBoundary) return null;
 
     //获得 ui.image
     ui.Image img = await boundary.toImage();

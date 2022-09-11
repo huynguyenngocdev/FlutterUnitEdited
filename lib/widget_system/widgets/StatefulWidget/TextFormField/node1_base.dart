@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// create by 张风捷特烈 on 2020-04-01
 /// contact me by email 1981462002@qq.com
-/// 说明: 
+/// 说明:
 //    {
 //      "widgetId": 199,
 //      "name": 'TextFormField基本使用',
@@ -60,11 +60,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     print('onFieldSubmitted:' + value);
   }
 
-  Widget _buildSubmitButton(BuildContext context) => RaisedButton(
-        color: Colors.blue,
-        shape: const CircleBorder(
-          side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
-        ),
+  Widget _buildSubmitButton(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            shape: MaterialStateProperty.all(
+              const CircleBorder(
+                side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+              ),
+            )),
         onPressed: _onSubmit,
         child: const Icon(
           Icons.check,

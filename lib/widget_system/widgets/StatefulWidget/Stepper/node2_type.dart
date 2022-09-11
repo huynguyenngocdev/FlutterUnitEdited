@@ -21,13 +21,13 @@ class VerticalStepper extends StatefulWidget {
 class _VerticalStepperState extends State<VerticalStepper> {
   int _position = 0;
 
-  final Map<String,String> stepsData = {
+  final Map<String, String> stepsData = {
     "填写表单": '请按表单填写个人信息。',
     "邮箱校验": '已将邮件发送至您的邮箱，请按照相关指示对您的账号进行邮箱校验。',
     "注册完成": '恭喜您，注册完成！',
   };
 
-  final List<Step> steps = const[
+  final List<Step> steps = const [
     Step(
       title: Text("填写表单"),
       content: SizedBox(height: 60, child: Text("请按表单填写个人信息")),
@@ -60,13 +60,18 @@ class _VerticalStepperState extends State<VerticalStepper> {
             });
           }
         },
-        controlsBuilder: (_,ControlsDetails details) {
+        controlsBuilder: (_, ControlsDetails details) {
           return Row(
             children: <Widget>[
-              RaisedButton(
-                color: Colors.blue,
-                shape: const CircleBorder(
-                  side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+              ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  shape: MaterialStateProperty.all(
+                    const CircleBorder(
+                      side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                    ),
+                  ),
                 ),
                 onPressed: details.onStepContinue,
                 child: const Icon(
@@ -74,10 +79,14 @@ class _VerticalStepperState extends State<VerticalStepper> {
                   color: Colors.white,
                 ),
               ),
-              RaisedButton(
-                color: Colors.red,
-                shape: const CircleBorder(
-                  side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+              ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  shape: MaterialStateProperty.all(
+                    const CircleBorder(
+                      side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                    ),
+                  ),
                 ),
                 onPressed: details.onStepCancel,
                 child: const Icon(

@@ -1,34 +1,33 @@
 /// create by 张风捷特烈 on 2020-03-26
 /// contact me by email 1981462002@qq.com
 /// 说明:
-//    {
-//      "widgetId": 25,
-//      "priority": 1,
-//      "name": "FlatButton点击事件",
-//      "subtitle": "【color】: 颜色   【Color】\n"
-//          "【splashColor】: 水波纹颜色   【Color】\n"
-//          "【child】: 子组件   【Widget】\n"
-//          "【textColor】: 子组件文字颜色   【Color】\n"
-//          "【highlightColor】: 长按高亮色   【Color】\n"
-//          "【padding】: 内边距   【EdgeInsetsGeometry】\n"
-//          "【onPressed】: 点击事件   【Function】",
-//    }
-
 import 'package:flutter/material.dart';
 
-class CustomFlatButton extends StatelessWidget {
-  const CustomFlatButton({Key? key}) : super(key: key);
+class CustomTextButton extends StatelessWidget {
+  const CustomTextButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: ()=>{},
-      padding: const EdgeInsets.all(8),
-      splashColor: Colors.green,
-      child: const Text("FlatButton"),
-      textColor: const Color(0xffFfffff),
-      color: Colors.blue,
-      highlightColor: const Color(0xffF88B0A),
+    return TextButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
+        elevation: MaterialStateProperty.all(0),
+        overlayColor: MaterialStateProperty.resolveWith(
+          (states) {
+            return states.contains(MaterialState.hovered)
+                ? Colors.green
+                : states.contains(MaterialState.pressed)
+                    ? const Color(0xffF88B0A)
+                    : null;
+          },
+        ),
+      ),
+      onPressed: () => {},
+      child: const Text(
+        "TextButton",
+        style: TextStyle(color: Color(0xffFfffff)),
+      ),
     );
   }
 }

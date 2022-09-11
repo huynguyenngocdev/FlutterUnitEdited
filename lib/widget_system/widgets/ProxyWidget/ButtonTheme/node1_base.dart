@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// create by 张风捷特烈 on 2020-04-12
 /// contact me by email 1981462002@qq.com
-/// 说明: 
+/// 说明:
 
 //    {
 //      "widgetId": 326,
@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 //      "subtitle": "属性参数同MaterialButton，可以通过ButtonTheme.of获取按钮主题数据，"
 //          "也可以为ButtonTheme【后代】的按钮组件设置默认样式，包括颜色、形状、尺寸等。",
 //    }
-
 
 class ButtonThemeDemo extends StatelessWidget {
   const ButtonThemeDemo({Key? key}) : super(key: key);
@@ -28,10 +27,10 @@ class ButtonThemeDemo extends StatelessWidget {
       child: Wrap(
         spacing: 10,
         children: <Widget>[
-          RaisedButton(onPressed: (){},child: const Icon(Icons.add)),
-          FlatButton(onPressed: (){},child: const Icon(Icons.add)),
-          OutlinedButton(onPressed: (){},child: const Icon(Icons.add)),
-          MaterialButton(onPressed: (){},child: const Icon(Icons.add)),
+          ElevatedButton(onPressed: () {}, child: const Icon(Icons.add)),
+          TextButton(onPressed: () {}, child: const Icon(Icons.add)),
+          OutlinedButton(onPressed: () {}, child: const Icon(Icons.add)),
+          MaterialButton(onPressed: () {}, child: const Icon(Icons.add)),
         ],
       ),
     );

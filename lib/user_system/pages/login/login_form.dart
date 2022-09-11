@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_unit/app/res/toly_icon.dart';
 import 'package:flutter_unit/app/router/unit_router.dart';
 import 'package:flutter_unit/app/utils/Toast.dart';
+import 'package:flutter_unit/components/permanent/feedback_widget.dart';
 import 'package:flutter_unit/user_system/bloc/login/bloc.dart';
 import 'package:flutter_unit/user_system/bloc/login/event.dart';
 import 'package:flutter_unit/user_system/bloc/login/state.dart';
-import 'package:flutter_unit/components/permanent/feedback_widget.dart';
 
 class LoginFrom extends StatefulWidget {
   const LoginFrom({Key? key}) : super(key: key);
@@ -91,7 +91,8 @@ class _LoginFromState extends State<LoginFrom> {
 
     if (!_preValidate(username, password)) return;
 
-    BlocProvider.of<LoginBloc>(context).add(DoLogin(username:username, password: password));
+    BlocProvider.of<LoginBloc>(context)
+        .add(DoLogin(username: username, password: password));
   }
 
   Widget buildUsernameInput() {
@@ -219,16 +220,21 @@ class _LoginFromState extends State<LoginFrom> {
   }
 
   Widget _buildBtnByState(BuildContext context, LoginState state) {
-    if(state is LoginLoading){
+    if (state is LoginLoading) {
       return Container(
           margin: const EdgeInsets.only(top: 10, bottom: 0),
           height: 40,
           width: 40,
-          child: RaisedButton(
-            elevation: 0,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            color: Colors.blue.withOpacity(0.4),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              )),
+              foregroundColor: MaterialStateProperty.all<Color>(
+                  Colors.blue.withOpacity(0.4)),
+              elevation: MaterialStateProperty.all(0),
+            ),
             onPressed: _doLogIn,
             child: const CupertinoActivityIndicator(),
           ));
@@ -237,11 +243,15 @@ class _LoginFromState extends State<LoginFrom> {
         margin: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 0),
         height: 40,
         width: MediaQuery.of(context).size.width,
-        child: RaisedButton(
-          elevation: 0,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          color: Colors.blue,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            )),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            elevation: MaterialStateProperty.all(0),
+          ),
           onPressed: _doLogIn,
           child: const Text("进入 Unit 世界",
               style: TextStyle(color: Colors.white, fontSize: 18)),

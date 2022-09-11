@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,35 +12,33 @@ class CustomDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _buildRaisedButton(context),
+        _buildElevatedButton(context),
         _buildDialog(),
       ],
     );
   }
 
   Widget _buildDialog() => CupertinoDialogAction(
-    onPressed: (){
+        onPressed: () {},
+        child: const SizedBox(
+          width: 50,
+          child: DeleteDialog(),
+        ),
+      );
 
-    },
-    child: const SizedBox(
-      width: 50,
-      child: DeleteDialog(),
-    ),
-  );
-
-  Widget _buildRaisedButton(BuildContext context) => RaisedButton(
-    shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all( Radius.circular(10))),
-    color: Colors.blue,
-    onPressed: () {
-      showDialog(context: context, builder: (ctx) => _buildDialog());
-    },
-    child: const Text(
-      'Just Show It !',
-      style:  TextStyle(color: Colors.white),
-    ),
-
-  );
+  Widget _buildElevatedButton(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))))),
+        onPressed: () {
+          showDialog(context: context, builder: (ctx) => _buildDialog());
+        },
+        child: const Text(
+          'Just Show It !',
+          style: TextStyle(color: Colors.white),
+        ),
+      );
 }
 
 class DeleteDialog extends StatelessWidget {
@@ -73,7 +69,7 @@ class DeleteDialog extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: Text(
         '    Hi toly! If you push the conform buttom ,'
-            ' You will lose this file. Are you sure wand to do that?',
+        ' You will lose this file. Are you sure wand to do that?',
         style: TextStyle(color: Color(0xffCFCFCF), fontSize: 16),
         textAlign: TextAlign.justify,
       ),
@@ -97,7 +93,7 @@ class DeleteDialog extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
           InkWell(
-            onTap: ()=>Navigator.of(context).pop(),
+            onTap: () => Navigator.of(context).pop(),
             child: Container(
               alignment: Alignment.center,
               height: 40,
@@ -106,7 +102,7 @@ class DeleteDialog extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   color: Colors.orangeAccent),
               child: const Text('Cancle',
-                  style:  TextStyle(color: Colors.white, fontSize: 16)),
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           )
         ],
@@ -115,15 +111,15 @@ class DeleteDialog extends StatelessWidget {
   }
 
   _buildBar(context) => Container(
-    height: 30,
-    alignment: Alignment.centerRight,
-    margin: const EdgeInsets.only(right: 10, top: 5),
-    child: InkWell(
-      onTap: ()=>Navigator.of(context).pop(),
-      child: const Icon(
-        Icons.close,
-        color: Color(0xff82CAE3),
-      ),
-    ),
-  );
+        height: 30,
+        alignment: Alignment.centerRight,
+        margin: const EdgeInsets.only(right: 10, top: 5),
+        child: InkWell(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.close,
+            color: Color(0xff82CAE3),
+          ),
+        ),
+      );
 }

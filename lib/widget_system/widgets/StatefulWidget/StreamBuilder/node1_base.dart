@@ -36,11 +36,14 @@ class _CustomStreamBuilderState extends State<CustomStreamBuilder> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        FlatButton(
-          color: Colors.blue,
-          shape: const CircleBorder(
-            side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
-          ),
+        TextButton(
+          style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              shape: MaterialStateProperty.all(
+                const CircleBorder(
+                  side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                ),
+              )),
           child: const Icon(
             Icons.add,
             color: Colors.white,
@@ -50,11 +53,14 @@ class _CustomStreamBuilderState extends State<CustomStreamBuilder> {
           },
         ),
         _buildStreamBuilder(),
-        FlatButton(
-          color: Colors.blue,
-          shape: const CircleBorder(
-            side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
-          ),
+        TextButton(
+          style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              shape: MaterialStateProperty.all(
+                const CircleBorder(
+                  side: BorderSide(width: 2.0, color: Color(0xFFDFDFDF)),
+                ),
+              )),
           child: const Icon(
             Icons.remove,
             color: Colors.white,
@@ -97,15 +103,18 @@ class CountGenerator {
   Stream<int> get state => _controller.stream; //获取状态流
   int get count => _count; //获取计数器数据
 
-  void dispose() {//关闭控制器
+  void dispose() {
+    //关闭控制器
     _controller.close();
   }
 
-  Future<void> increment() async {//增加记数方法
+  Future<void> increment() async {
+    //增加记数方法
     _controller.add(++_count);
   }
 
-  Future<void> minus() async {//增加记数方法
+  Future<void> minus() async {
+    //增加记数方法
     _controller.add(--_count);
   }
 }
